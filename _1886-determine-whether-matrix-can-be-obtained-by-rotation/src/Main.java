@@ -10,9 +10,10 @@ public class Main {
     public static boolean findRotation(int[][] mat, int[][] target){
         if (mat == target)  return true;
 
-        int[][] res = extract(mat, mat.length); //clockwise 90
-        int[][] res2 = extract(res, mat.length); //clockwise 180
-        int[][] res3 = extract(res2, mat.length); //clockwise 270
+
+        int[][] res = extract(mat); //clockwise 90
+        int[][] res2 = extract(res); //clockwise 180
+        int[][] res3 = extract(res2); //clockwise 270
 
         return Arrays.deepEquals(target, res) ||
                 Arrays.deepEquals(target, res2) ||
@@ -20,11 +21,11 @@ public class Main {
                 Arrays.deepEquals(target, mat);
     }
 
-    private static int[][] extract(int[][] origin, int n) {
-        int[][] newRes = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                newRes[i][j] = origin[n - 1 - j][i];
+    private static int[][] extract(int[][] origin) {
+        int[][] newRes = new int[origin.length][origin.length];
+        for (int i = 0; i < origin.length; i++) {
+            for (int j = 0; j < origin.length; j++) {
+                newRes[i][j] = origin[origin.length - 1 - j][i];
             }
         }
 
